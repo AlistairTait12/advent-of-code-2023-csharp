@@ -10,8 +10,6 @@ public class CalibrationDocumentProcessor
             .ToList();
     }
 
-    public int GetValueFromDocument()
-    {
-        throw new NotImplementedException();
-    }
+    public int GetValueFromDocument() => _documentLines.Aggregate(0, (total, line) =>
+        total += CalibrationLineProcessor.GetValueFromLine(line));
 }
