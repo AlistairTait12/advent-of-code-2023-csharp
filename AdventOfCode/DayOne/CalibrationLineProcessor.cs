@@ -24,6 +24,13 @@ public static class CalibrationLineProcessor
             @"\d|one|two|three|four|five|six|seven|eight|nine",
             RegexOptions.IgnoreCase);
         var matches = digitRegex.Matches(line);
+        
+        // Get all matches where words potentially overlap
+        var reversedRegex = new Regex(
+            @"\d|one|two|three|four|five|six|seven|eight|nine",
+            RegexOptions.RightToLeft);
+
+        var reversedMatches = reversedRegex.Matches(line);
 
         if (matches.Count is 0)
         {
@@ -32,6 +39,9 @@ public static class CalibrationLineProcessor
 
         // Map MatchCollection to a List<int>
         var converted = GetDigitsFromLine(matches);
+        var reversedConverted = GetDigitsFromLine(reversedMatches);
+
+        converted.Add(reversedConverted.First());
 
         int.TryParse($"{converted.First()}{converted.Last()}", out var result);
         return result;

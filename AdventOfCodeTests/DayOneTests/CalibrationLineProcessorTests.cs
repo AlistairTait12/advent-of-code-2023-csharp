@@ -31,7 +31,7 @@ public class CalibrationLineProcessorTests
     [TestCase("NoDigitsHere")]
     [TestCase("lskdhfkjsdhgkjf")]
     [TestCase("No digits here")]
-    public void GetValueWhenThereAreNoDigitsReturnsZero(string line)
+    public void GetValueFromLineWhenThereAreNoDigitsReturnsZero(string line)
     {
         // Act
         var actual = CalibrationLineProcessor.GetValueFromLine(line);
@@ -48,7 +48,21 @@ public class CalibrationLineProcessorTests
     [TestCase("4nineeightseven2", 42)]
     [TestCase("zoneight234", 14)]
     [TestCase("7pqrstsixteen", 76)]
-    public void GetValueWhenLinePartiallyComposedOfDigitsAsWordsReturnsCorrectValue(string line, int expected)
+    public void GetValueFromLineWhenLinePartiallyComposedOfDigitsAsWordsReturnsCorrectValue(string line, int expected)
+    {
+        // Act
+        var actual = CalibrationLineProcessor.GetValueFromLine(line);
+
+        // Assert
+        Assert.That(actual, Is.EqualTo(expected));
+    }
+
+    [TestCase("9qb95oneightsf", 98)]
+    [TestCase("twone", 21)]
+    [TestCase("fiveight", 58)]
+    [TestCase("6sevenine", 69)]
+    [TestCase("twoneight", 28)]
+    public void GetValueFromLineWhenWordsOverlapAtEndOfLineStillGetsRightValue(string line, int expected)
     {
         // Act
         var actual = CalibrationLineProcessor.GetValueFromLine(line);
