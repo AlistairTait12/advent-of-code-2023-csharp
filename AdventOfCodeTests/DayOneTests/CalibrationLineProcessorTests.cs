@@ -39,4 +39,21 @@ public class CalibrationLineProcessorTests
         // Assert
         Assert.That(actual, Is.Zero);
     }
+
+
+    [TestCase("two1nine", 29)]
+    [TestCase("eightwothree", 83)]
+    [TestCase("abcone2threexyz", 13)]
+    [TestCase("xtwone3four", 24)]
+    [TestCase("4nineeightseven2", 42)]
+    [TestCase("zoneight234", 14)]
+    [TestCase("7pqrstsixteen", 76)]
+    public void GetValueWhenLinePartiallyComposedOfDigitsAsWordsReturnsCorrectValue(string line, int expected)
+    {
+        // Act
+        var actual = CalibrationLineProcessor.GetValueFromLine(line);
+
+        // Assert
+        Assert.That(actual, Is.EqualTo(expected));
+    }
 }
