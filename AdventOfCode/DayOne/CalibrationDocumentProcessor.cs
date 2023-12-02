@@ -4,9 +4,9 @@ public class CalibrationDocumentProcessor
 {
     private readonly List<string> _documentLines;
 
-    public CalibrationDocumentProcessor(string pathToDocument)
+    public CalibrationDocumentProcessor(IFileWrapper fileWrapper)
     {
-        _documentLines = File.ReadAllLines(pathToDocument)
+        _documentLines = fileWrapper.ReadAllLines()
             .ToList();
     }
 
