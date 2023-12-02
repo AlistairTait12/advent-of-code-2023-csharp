@@ -1,9 +1,3 @@
-﻿namespace AdventOfCode;
+﻿Console.WriteLine("Ho, ho, ho!");
 
-internal class Program
-{
-    static void Main(string[] args)
-    {
-        Console.WriteLine("Hello, World!");
-    }
-}
+// Area for day 1 answers
