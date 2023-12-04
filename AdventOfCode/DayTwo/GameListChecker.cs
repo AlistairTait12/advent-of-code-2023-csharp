@@ -25,4 +25,19 @@ public class GameListChecker
 
         return sumOfPossibleGameIds;
     }
+
+    public int GetPowersOfMinimumValueOfEachGame()
+    {
+        var gamesList = _gameListBuilder.Build();
+        var total = 0;
+        foreach (var game in gamesList)
+        {
+            var minRound = game.GetMinimumCubes();
+
+            var power = minRound.RedCubes * minRound.GreenCubes * minRound.BlueCubes;
+            total += power;
+        }
+
+        return total;
+    }
 }

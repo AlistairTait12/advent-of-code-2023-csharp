@@ -29,6 +29,16 @@ public class GameListCheckerTests
         actual.Should().Be(8);
     }
 
+    [Test]
+    public void GetPowersOfMinimumValueOfEachGameReturnsCorrectAnswer()
+    {
+        // Act
+        var actual = _checker.GetPowersOfMinimumValueOfEachGame();
+
+        // Assert
+        actual.Should().Be(2286);
+    }
+
     private static string[] GetFileContents() => new string[]
     {
         "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green",
