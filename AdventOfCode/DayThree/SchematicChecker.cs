@@ -85,7 +85,8 @@ public class SchematicChecker
                 if (new Regex(@"\d").Match(cell.Value.ToString()).Success)
                 {
                     toAdd.Add(cell);
-                    if (!new Regex(@"\d").Match(line.ElementAt(cell.Char + 1).Value.ToString()).Success)
+                    if (cell.Char == line.Count - 1 // it is the last cell on the line
+                        || !new Regex(@"\d").Match(line.ElementAt(cell.Char + 1).Value.ToString()).Success)
                     {
                         result.Add(toAdd);
                         toAdd = new List<Cell>();
