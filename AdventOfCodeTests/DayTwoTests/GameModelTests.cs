@@ -1,5 +1,4 @@
 ﻿using AdventOfCode.DayTwo;
-using FluentAssertions;
 
 namespace AdventOfCodeTests.DayTwoTests;
 

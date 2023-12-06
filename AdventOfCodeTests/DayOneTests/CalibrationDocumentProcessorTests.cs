@@ -1,5 +1,4 @@
 ﻿using AdventOfCode.DayOne;
-using FakeItEasy;
 
 namespace AdventOfCodeTests.DayOneTests;
 
