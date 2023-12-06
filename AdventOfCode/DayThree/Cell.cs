@@ -1,4 +1,6 @@
-﻿namespace AdventOfCode.DayThree;
+﻿using System.Text.RegularExpressions;
+
+namespace AdventOfCode.DayThree;
 
 public class Cell
 {
@@ -6,11 +8,11 @@ public class Cell
     public int Line { get; set; }
     public int Char { get; set; }
     public List<List<Cell>> Grid { get; set; }
-    public List<Cell> Neighbours { get; set; }
     public bool IsPartDigit =>
-        Neighbours.Any(cell => cell.Value == '*'); // any symbol
+        GetNeighbours()
+            .Any(cell => new Regex(@"[^a-zA-Z0-9\.]").Match(cell.Value.ToString()).Success); // any symbol
 
-    public List<Cell> GetNeighbours()
+    private List<Cell> GetNeighbours()
     {
         if (Grid is null)
         {
@@ -21,7 +23,7 @@ public class Cell
         var maxCellIndex = Grid.First().Count - 1;
         var maxLineIndex = Grid.Count - 1;
 
-        if (Line > 0) // You can add the cell above
+        if (Line > 0) // add the cell above
         {
             neighbours.Add(Grid[Line - 1][Char]);
             if (Char > 0) // add top left
@@ -35,7 +37,7 @@ public class Cell
             }
         }
 
-        if (Line < maxLineIndex) // You can add the cell below
+        if (Line < maxLineIndex) // add the cell below
         {
             neighbours.Add(Grid[Line + 1][Char]);
             if (Char > 0)
@@ -49,12 +51,12 @@ public class Cell
             }
         }
 
-        if (Char > 0) // You can add the one to the left
+        if (Char > 0) // add the one to the left
         {
             neighbours.Add(Grid[Line][Char - 1]);
         }
 
-        if (Char < maxCellIndex) // You can add the one to the right
+        if (Char < maxCellIndex) // add the one to the right
         {
             neighbours.Add(Grid[Line][Char + 1]);
         }

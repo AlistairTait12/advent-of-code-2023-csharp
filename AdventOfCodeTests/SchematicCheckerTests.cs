@@ -20,12 +20,10 @@ public class SchematicCheckerTests
     }
 
     [Test]
-    public void CheckGetsTheCorrectSumForTheSchematic()
+    public void GetSumOfPartNumbersGetsTheCorrectSumForTheSchematic()
     {
-        // Arrange
-
         // Act
-        var actual = _checker.Check();
+        var actual = _checker.GetSumOfPartNumbers();
 
         // Assert
         actual.Should().Be(4361);

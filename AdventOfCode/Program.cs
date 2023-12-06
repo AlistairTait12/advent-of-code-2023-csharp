@@ -26,6 +26,6 @@ Console.WriteLine($"The answer to day 2 part 2 is: {dayTwoPartTwo}");
 // Area for day 3 answers
 var day3FileWrapper = new RealFileWrapper(Path.Combine(puzzleInputPath, @"day_3.txt"));
 var schematicChecker = new SchematicChecker(day3FileWrapper);
-var dayThreePartOne = schematicChecker.Check();
+var dayThreePartOne = schematicChecker.GetSumOfPartNumbers();
 
 Console.WriteLine($"The answer to day 3 part 1 is {dayThreePartOne}");
